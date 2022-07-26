@@ -21,141 +21,158 @@
 
       // verification of the USSD code
       if (USSD === "*706#") {
+        // options for users to choose their operation
+        let option = prompt(
+          "Sammy Bank \n Enter \n 1 => Airtime-self \n 2 => Airtime-others \n 3 => Data \n 4 => Transfer"
+        );
 
-            // options for users to choose their operation
-          let option = prompt(
-            "Sammy Bank \n Enter \n 1 => Airtime-self \n 2 => Airtime-others \n 3 => Data \n 4 => Transfer"
-          );
+        // execution of the options of the users
+        switch (option) {
+          // option 1 : Airtime-Self
+          case "1": {
+            let airtimeSelf = prompt("Enter the amount of airtime"); // Amount of airtime
+            let pin = prompt(
+              `You are about to buy #${airtimeSelf} airtime for your self \nPlease enter your PIN`
+            ); // users input their PIN
 
-          // execution of the options of the users
-          switch (option) {
+            // PIN verification
+            if (pin === "1234") {
+              alert(
+                `Your have successfully bought #${airtimeSelf} airtime for yourself \n You will soon receive your airtime`
+              );
+            } else {
+              alert("Invalid PIN");
+            }
+            break;
+          }
 
-            // option 1 : Airtime-Self
-            case "1" : { 
-                let airtimeSelf = prompt("Enter the amount of airtime") // Amount of airtime
-                let pin = prompt(`You are about to buy #${airtimeSelf} airtime for your self \nPlease enter your PIN`) // users input their PIN
-                
+          // option 2 : Airtime
+          case "2": {
+            let recipientNumber = prompt(`Enter recipient mobile number`);
+
+            //verification of recipient mobile number
+            if (recipientNumber.length == 11) {
+              let amountAirtime = prompt(
+                `Enter the amount of airtime you want to send to ${recipientNumber}`
+              );
+              let pin = prompt(
+                `You are about to buy #${amountAirtime} airtime for ${recipientNumber} \nPlease enter your PIN`
+              ); // users input their PIN
+
+              // PIN verification
+              if (pin === "1234") {
+                alert(
+                  `Your have successfully bought #${amountAirtime} airtime for ${recipientNumber} \n ${recipientNumber} will soon receive his/her airtime`
+                );
+              } else {
+                alert("Invalid PIN");
+              }
+            } else {
+              alert("Invalid mobile number");
+            }
+            break;
+          }
+
+          // option 3 : Data
+          case "3": {
+            //option for users to choose who to buy data for
+            let option = prompt(
+              `Who do you want to buy data for? \nEnter \n1 => Self \n2 => Others`
+            );
+            if (option == 1) {
+              //Buy Data for Self
+              let dataSelf = prompt("Enter the amount of data you want to buy"); // Amount of data
+              let pin = prompt(
+                `You are about to buy #${dataSelf} data for your self \nPlease enter your PIN`
+              ); // users input their PIN
+
+              // PIN verification
+              if (pin === "1234") {
+                alert(
+                  `Your have successfully bought #${dataSelf} data for yourself \n You will soon receive your airtime`
+                );
+              } else {
+                alert("Invalid PIN");
+              }
+            } else if (option == 2) {
+              //Buy Data for others
+              let recipientNumber = prompt(`Enter recipient mobile number`);
+
+              //verification of recipient mobile number
+              if (recipientNumber.length == 11) {
+                let amountAirtime = prompt(
+                  `Enter the amount of airtime you want to send to ${recipientNumber}`
+                );
+                let pin = prompt(
+                  `You are about to buy #${amountAirtime} airtime for ${recipientNumber} \nPlease enter your PIN`
+                ); // users input their PIN
+
                 // PIN verification
-                if(pin === "1234") { 
-                    alert(`Your have successfully bought #${airtimeSelf} airtime for yourself \n You will soon receive your airtime`)
+                if (pin === "1234") {
+                  alert(
+                    `Your have successfully bought #${amountAirtime} data for ${recipientNumber}. \n ${recipientNumber} will soon receive his/her data.`
+                  );
+                } else {
+                  alert("Invalid PIN");
                 }
-                else {
-                    alert("Invalid PIN")
-                }
-                break;
+              } else {
+                alert("Invalid mobile number");
+              }
+            } else {
+              alert("Invalid Input");
             }
-            
-            // option 2 : Airtime
-            case "2" : { 
-                let recipientNumber = prompt(`Enter recipient mobile number`)
+            break;
+          }
 
-                //verification of recipient mobile number
-                if( recipientNumber.length == 11 ){
-                    let amountAirtime = prompt(`Enter the amount of airtime you want to send to ${recipientNumber}`)
-                    let pin = prompt(`You are about to buy #${amountAirtime} airtime for ${recipientNumber} \nPlease enter your PIN`) // users input their PIN
-                
-                    // PIN verification
-                    if(pin === "1234") { 
-                        alert(`Your have successfully bought #${amountAirtime} airtime for ${recipientNumber} \n ${recipientNumber} will soon receive his/her airtime`)
-                    }
-                    else {
-                        alert("Invalid PIN")
-                    }
+          // option 4 : Transfer
+          case "4": {
+            // Amount of transfer
+            let amount = prompt(
+              `Enter the amount of money you want to transfer`
+            );
+            // Account number of recipient
+            let accountNumber = prompt(
+              `Enter the recipient account number you want to transfer to`
+            );
+
+            if (accountNumber.length == 10) {
+              //Recipient Bank
+              let Bank = prompt(
+                `Enter \n1 => First Bank \n2 => Access Bank \n3 => Zenith Bank \n4 => Fedelity Bank`
+              );
+              switch (Bank) {
+                case "1":
+                case "2":
+                case "3":
+                case "4": {
+                  let pin = prompt(
+                    `You are about to transfer #${amount} to Mr. Sabinus \nPlease enter your PIN`
+                  ); // users input their PIN
+
+                  // PIN verification
+                  if (pin === "1234") {
+                    alert(
+                      `Your have successfully transfer #${amount} to Mr. Sabinus. \n Mr. Sabinus will soon receive his money.`
+                    );
+                  } else {
+                    alert("Invalid PIN");
+                  }
+                  break;
                 }
-                else {
-                    alert("Invalid mobile number")
+                default: {
+                  alert(`Invalid Input!`);
                 }
-                break;
+              }
+            } else {
+              alert(`Invalid Input`);
             }
-
-            // option 3 : Data
-            case "3" : {
-
-                //option for users to choose who to buy data for
-                let option = prompt(`Who do you want to buy data for? \nEnter \n1 => Self \n2 => Others`)
-                if (option == 1) {
-                    //Buy Data for Self
-                    let dataSelf = prompt("Enter the amount of data you want to buy") // Amount of data
-                    let pin = prompt(`You are about to buy #${dataSelf} data for your self \nPlease enter your PIN`) // users input their PIN
-                    
-                    // PIN verification
-                    if(pin === "1234") { 
-                        alert(`Your have successfully bought #${dataSelf} data for yourself \n You will soon receive your airtime`)
-                    }
-                    else {
-                        alert("Invalid PIN")
-                    }
-                }
-                else if (option == 2) {
-                    //Buy Data for others
-                    let recipientNumber = prompt(`Enter recipient mobile number`)
-
-                    //verification of recipient mobile number
-                    if( recipientNumber.length == 11 ){
-                        let amountAirtime = prompt(`Enter the amount of airtime you want to send to ${recipientNumber}`)
-                        let pin = prompt(`You are about to buy #${amountAirtime} airtime for ${recipientNumber} \nPlease enter your PIN`) // users input their PIN
-                    
-                        // PIN verification
-                        if(pin === "1234") { 
-                            alert(`Your have successfully bought #${amountAirtime} data for ${recipientNumber}. \n ${recipientNumber} will soon receive his/her data.`)
-                        }
-                        else {
-                            alert("Invalid PIN")
-                        }
-                    }
-                    else {
-                        alert("Invalid mobile number")
-                    }
-                }
-                else {
-                    alert("Invalid Input")
-                }
-                break;
-            }
-
-            // option 4 : Transfer
-            case "4" : {
-                // Amount of transfer
-                let amount = prompt(`Enter the amount of money you want to transfer`)
-                // Account number of recipient
-                let accountNumber = prompt(`Enter the recipient account number you want to transfer to`)
-
-                if(accountNumber.length == 10) {
-
-                    //Recipient Bank
-                    let Bank = prompt(`Enter \n1 => First Bank \n2 => Access Bank \n3 => Zenith Bank \n4 => Fedelity Bank`)
-                    switch(Bank) {
-                        case "1":
-                        case "2":
-                        case "3":
-                        case "4": {
-                            let pin = prompt(`You are about to transfer #${amount} to Mr. Sabinus \nPlease enter your PIN`) // users input their PIN
-
-                            // PIN verification
-                            if(pin === "1234") { 
-                                alert(`Your have successfully transfer #${amount} to Mr. Sabinus. \n Mr. Sabinus will soon receive his money.`)
-                            }
-                            else {
-                                alert("Invalid PIN")
-                            }
-                            break;
-                        }
-                        default: {
-                            alert(`Invalid Input!`)
-                        }
-
-                    }
-                }
-                else{
-                    alert(`Invalid Input`)
-                }
-                break
-            }
-            default : {
-                alert("Invalid Input")
-            }
+            break;
+          }
+          default: {
+            alert("Invalid Input");
           }
         }
+      }
     </script>
   </body>
 </html>
